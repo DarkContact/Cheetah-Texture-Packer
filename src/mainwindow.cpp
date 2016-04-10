@@ -201,9 +201,11 @@ void MainWindow::packerUpdate()
                 QMessageBox::critical(0, tr("Error"), tr("Cannot create file ") + outputFile);
             }
             else
-            {
+            {              
                 QTextStream out(&positionsFile);
-                //out << "textures: " << imgFile << "\n";
+                if (ui->comboBox->currentText() == "Cheetah") {
+                    out << "textures: " << imgFile << "\n";
+                }
                 for(i = 0; i < packer.images.size(); i++)
                 {
                     if(packer.images.at(i).textureId != j)
@@ -230,18 +232,28 @@ void MainWindow::packerUpdate()
                         size.transpose();
                         crop = QRect(crop.y(), crop.x(), crop.height(), crop.width());
                     }
-                    out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
-                        <<
-                        " " <<
-                        pos.x() << " " <<
-                        pos.y() << " " <<
-                        crop.width() << " " <<
-                        crop.height() << "\n";
-                        //crop.x() << "\t" <<
-                        //crop.y() << "\t" <<
-                        //sizeOrig.width() << "\t" <<
-                        //sizeOrig.height() << "\t" <<
-                        //(packer.images.at(i).rotated ? "r" : "") << "\n";
+                    if (ui->comboBox->currentText() == "Cheetah") {
+                        out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
+                            <<
+                            "\t" <<
+                            pos.x() << "\t" <<
+                            pos.y() << "\t" <<
+                            crop.width() << "\t" <<
+                            crop.height() << "\t" <<
+                            crop.x() << "\t" <<
+                            crop.y() << "\t" <<
+                            sizeOrig.width() << "\t" <<
+                            sizeOrig.height() << "\t" <<
+                            (packer.images.at(i).rotated ? "r" : "") << "\n";
+                    }
+                    if (ui->comboBox->currentText() == "DarkContact") {
+                        out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
+                            << " " <<
+                            pos.x() << " " <<
+                            pos.y() << " " <<
+                            crop.width() << " " <<
+                            crop.height() << "\n";
+                    }
                 }
             }
         }
