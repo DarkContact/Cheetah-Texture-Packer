@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     exporting = false;
     ui->widget->scaleBox = ui->scale;
     tabifyDockWidget(ui->dockPreferences, ui->dockExport);
-    ui->dockPreferences->raise();
+    ui->dockPreferences->raise();   
 
     pattern = QPixmap(20, 20);
     QPainter painter(&pattern);
@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     painter.fillRect(10, 10, 10, 10, QColor(SHADOW, SHADOW, SHADOW));
     painter.fillRect(0, 10, 10, 10, QColor(BRIGHT, BRIGHT, BRIGHT));
     setAcceptDrops(true);
+    updateAplhaThreshold();
 }
 
 MainWindow::~MainWindow()
@@ -202,7 +203,7 @@ void MainWindow::packerUpdate()
             else
             {
                 QTextStream out(&positionsFile);
-                out << "textures: " << imgFile << "\n";
+                //out << "textures: " << imgFile << "\n";
                 for(i = 0; i < packer.images.size(); i++)
                 {
                     if(packer.images.at(i).textureId != j)
@@ -231,16 +232,16 @@ void MainWindow::packerUpdate()
                     }
                     out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
                         <<
-                        "\t" <<
-                        pos.x() << "\t" <<
-                        pos.y() << "\t" <<
-                        crop.width() << "\t" <<
-                        crop.height() << "\t" <<
-                        crop.x() << "\t" <<
-                        crop.y() << "\t" <<
-                        sizeOrig.width() << "\t" <<
-                        sizeOrig.height() << "\t" <<
-                        (packer.images.at(i).rotated ? "r" : "") << "\n";
+                        " " <<
+                        pos.x() << " " <<
+                        pos.y() << " " <<
+                        crop.width() << " " <<
+                        crop.height() << "\n";
+                        //crop.x() << "\t" <<
+                        //crop.y() << "\t" <<
+                        //sizeOrig.width() << "\t" <<
+                        //sizeOrig.height() << "\t" <<
+                        //(packer.images.at(i).rotated ? "r" : "") << "\n";
                 }
             }
         }
