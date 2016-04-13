@@ -247,8 +247,7 @@ void MainWindow::packerUpdate()
                             (packer.images.at(i).rotated ? "r" : "") << "\n";
                     }
                     if (ui->comboBox->currentText() == "DarkContact") {
-                        out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
-                            << " " <<
+                        out <<
                             pos.x() << " " <<
                             pos.y() << " " <<
                             crop.width() << " " <<
