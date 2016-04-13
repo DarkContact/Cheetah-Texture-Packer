@@ -203,9 +203,14 @@ void MainWindow::packerUpdate()
             else
             {              
                 QTextStream out(&positionsFile);
+
                 if (ui->comboBox->currentText() == "Cheetah") {
                     out << "textures: " << imgFile << "\n";
                 }
+                else if (ui->comboBox->currentText() == "DarkContact") {
+                    out << packer.images.count() << "\n";
+                }
+
                 for(i = 0; i < packer.images.size(); i++)
                 {
                     if(packer.images.at(i).textureId != j)
@@ -232,6 +237,7 @@ void MainWindow::packerUpdate()
                         size.transpose();
                         crop = QRect(crop.y(), crop.x(), crop.height(), crop.width());
                     }
+
                     if (ui->comboBox->currentText() == "Cheetah") {
                         out << ((static_cast<packerData *>(packer.images.at(i).id))->listItem)->text()
                             <<
@@ -246,7 +252,7 @@ void MainWindow::packerUpdate()
                             sizeOrig.height() << "\t" <<
                             (packer.images.at(i).rotated ? "r" : "") << "\n";
                     }
-                    if (ui->comboBox->currentText() == "DarkContact") {
+                    else if (ui->comboBox->currentText() == "DarkContact") {
                         out <<
                             pos.x() << " " <<
                             pos.y() << " " <<
