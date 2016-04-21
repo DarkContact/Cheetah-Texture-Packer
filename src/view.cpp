@@ -1,8 +1,10 @@
 #include "view.h"
 #include <QDebug>
-View::View(QWidget * /* parent */)
+View::View(QWidget * /* parent */) :
+    scale(1.0f),
+    size(0,0)
 {
-    scale = 1;
+    //scale = 1;
 }
 
 void View::paintEvent(QPaintEvent * /* event */)

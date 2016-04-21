@@ -15,6 +15,10 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 QStringList imageExtensions;
 
 void printHelp(const char *error = NULL)
@@ -551,6 +555,10 @@ int main(int argc, char *argv[])
 
         return 0;
     }
+
+#ifdef _WIN32
+	FreeConsole();
+#endif
 
     QTranslator myTranslator;
     myTranslator.load("tile_" + QLocale::system().name(), "qm");
