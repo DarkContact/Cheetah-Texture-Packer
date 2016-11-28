@@ -16,7 +16,6 @@ contains(QT_VERSION, "^5.*") {
 }
 
 TEMPLATE = app
-#TEMPLATE = vcapp
 
 SOURCES += main.cpp\
 	mainwindow.cpp \
@@ -30,16 +29,11 @@ HEADERS  += mainwindow.h \
 	view.h \
 	imagepacker.h \
 	maxrects.h
-FORMS    += mainwindow.ui
 
-#QMAKE_CXXFLAGS += -Wextra -Werror
+FORMS    += mainwindow.ui
 
 TRANSLATIONS += tile_ru.ts
 
-#DarkContact Win32 VC2013
 CONFIG += console
 
 DESTDIR = ../bin
-
-#QMAKE_CXXFLAGS_RELEASE -= /MD
-#QMAKE_CXXFLAGS_RELEASE += /MT
